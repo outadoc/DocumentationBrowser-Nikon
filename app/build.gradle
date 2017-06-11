@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "fr.outadev.nikondocbrowser"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation(group: 'org.simpleframework', name: 'simple-xml', version: '2.7.1'){
+        exclude module: 'stax'
+        exclude module: 'stax-api'
+        exclude module: 'xpp3'
+    }
+    implementation 'com.github.kittinunf.fuel:fuel:1.7.0'
+    implementation 'com.github.kittinunf.fuel:fuel-android:1.7.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.github.salomonbrys.kodein:kodein-conf:4.0.0'
+
+    implementation group: 'org.jetbrains.anko', name: 'anko-sdk15', version: anko_version
+    implementation group: 'org.jetbrains.anko', name: 'anko-support-v4', version: anko_version
+    implementation group: 'org.jetbrains.anko', name: 'anko-appcompat-v7', version: anko_version
+    implementation group: 'org.jetbrains.anko', name: 'anko-sqlite', version: anko_version
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}
